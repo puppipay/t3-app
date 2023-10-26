@@ -1,4 +1,6 @@
 import React from 'react'
+import Layout from '~/components/Layout';
+import SideNav from '~/components/SideNav';
 const tweets = [
     { id: '1', name: 'Ramesh', message: "first message" },
     { id: '2', name: 'Raju', message: "second message" }
@@ -9,30 +11,13 @@ const tweets = [
 // CHANGE flex-col, flex-grow and see effect
 // Reference used https://github.com/WebDevSimplified/twitter-clone/blob/main/src/pages/_app.tsx
 
-/*
-We need to do like below
-  <Layout>
-     <div>
-
-     </div>   
-  <Layout>
-*/
-
 
 function screen1() {
     return (
         <>
-            <div className="container mx-auto  flex items-start sm:pr-4">
-                <nav className="sticky top-0 px-2  py-4">
-                    <ul className="flex flex-col items-start gap-2 whitespace-nowrap">
-                        <li>
-                            Test1
-                        </li>
-                        <li>
-                            Test2
-                        </li>
-                    </ul>
-                </nav>
+            <Layout >
+               <SideNav />
+
                 <div className="min-h-screen flex-grow border-x">
                     <header className="sticky top-0 z-10 border-b bg-white pt-2">
                         <h1 className="mb-2 px-4 text-lg font-bold">Home</h1>
@@ -48,7 +33,7 @@ function screen1() {
                     </div>
 
                 </div>
-            </div>
+            </Layout>
         </>
 
     )
