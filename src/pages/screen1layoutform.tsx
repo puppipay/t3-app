@@ -24,12 +24,14 @@ function screen1() {
                 <div className="min-h-screen flex-grow border-x">
                     <header className="sticky top-0 z-10 border-b bg-white pt-2">
                         <h1 className="mb-2 px-4 text-lg font-bold">Home</h1>
+                        <div className="flex">
                         <button className="flex-grow p-2 hover:bg-gray-200 focus-visible:bg-gray-200"> One </button>
                         <button className="flex-grow p-2 hover:bg-gray-200 focus-visible:bg-gray-200"> two </button>
+                        </div>
                     </header>
                     <TweetForm />
                    <InfiniteTweetlist />
-                   
+
 
                     
                 </div>
