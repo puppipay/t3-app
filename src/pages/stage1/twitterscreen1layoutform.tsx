@@ -1,8 +1,8 @@
 import React from 'react'
-import InfiniteTweetlist from '~/components/InfiniteTweetlist';
-import Layout from '~/components/Layout';
-import SideNav from '~/components/SideNav';
-import TweetForm from '~/components/TweetForm';
+import InfiniteTweetlist from '~/components/stage1/InfiniteTweetlist';
+import Layout from '~/components/stage1/Layout';
+import SideNav from '~/components/stage1/SideNav';
+import TweetForm from '~/components/stage1/TweetForm';
 const tweets = [
     { id: '1', name: 'Ramesh', message: "first message" },
     { id: '2', name: 'Raju', message: "second message" }

@@ -1,8 +1,9 @@
 import React from 'react'
 import Head from "next/head";
+import Link from 'next/link';
 
 //import { useRouter } from 'next/router';
-const profile = {id:'123', name: 'good boy', city: 'bangalore'};
+
 
 import type {
     GetStaticPaths,
@@ -10,7 +11,9 @@ import type {
     InferGetStaticPropsType,
     NextPage,
   } from "next";
+  import InfiniteTweetlist from '~/components/stage1/InfiniteTweetlist';
 
+  const profile = {id:'123', name: 'good boy', city: 'bangalore'};
 
   const Profilepagessrcontext: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
     id,
@@ -27,8 +30,22 @@ console.log("test1");
           <title>{`Twitter Clone - ${profile.name}`}</title>
         </Head>
         <header className="sticky top-0 z-10 flex items-center border-b bg-white px-4 py-2">
-          <div> some data </div>
+
+        <Link href=".." className="mr-2">
+        kkkk
+        </Link>
+        
+        <div className="ml-2 flex-grow">
+          <h1 className="text-lg font-bold">{profile.name}</h1>
+          <div className="text-gray-500">
+            {profile.name}{" "}
+            Following
+          </div>
+        </div>
+        
+
         </header>
+    <InfiniteTweetlist />
 
       </>
 

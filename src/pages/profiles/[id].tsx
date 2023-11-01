@@ -1,18 +1,9 @@
 import React from 'react'
 
-import { useRouter } from 'next/router';
-
-
-
-
-function Profilepage() {
-
-    const router = useRouter();
-const { id } = router.query;
-
+function Profile() {
   return (
-    <div>{id}</div>
+    <div> Profile</div>
   )
 }
 
-export default Profilepage;
+export default Profile

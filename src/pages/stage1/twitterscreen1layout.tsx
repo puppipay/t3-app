@@ -1,6 +1,6 @@
 import React from 'react'
-import Layout from '~/components/Layout';
-import SideNav from '~/components/SideNav';
+import Layout from '~/components/stage1/Layout';
+import SideNav from '~/components/stage1/SideNav';
 const tweets = [
     { id: '1', name: 'Ramesh', message: "first message" },
     { id: '2', name: 'Raju', message: "second message" }
