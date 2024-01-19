@@ -19,7 +19,8 @@ import { Button } from "~/components/Button";
 const ProfilePage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   id,
 }) => {
-  const { data: profile } = api.profile.getById.useQuery({ id });
+  const {data: profile }  = api.profile.getById.useQuery({ id });
+
   const tweets = api.tweet.infiniteProfileFeed.useInfiniteQuery(
     { userId: id },
     { getNextPageParam: (lastPage) => lastPage.nextCursor }
@@ -40,12 +41,16 @@ const ProfilePage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
     },
   });
 
+  console.log(profile?.name);
+
   if (profile == null || profile.name == null) {
     return <ErrorPage statusCode={404} />;
   }
+ 
 
   return (
-    <>
+    <div>
+      
       <Head>
         <title>{`Twitter Clone - ${profile.name}`}</title>
       </Head>
@@ -73,70 +78,21 @@ const ProfilePage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           onClick={() => toggleFollow.mutate({ userId: id })}
         />
       </header>
-      <main>
-        <InfiniteTweetList
-          tweets={tweets.data?.pages.flatMap((page) => page.tweets)}
-          isError={tweets.isError}
-          isLoading={tweets.isLoading}
-          hasMore={tweets.hasNextPage}
-          fetchNewTweets={tweets.fetchNextPage}
-        />
-      </main>
-    </>
-  );
-};
-
-function FollowButton({
-  userId,
-  isFollowing,
-  isLoading,
-  onClick,
-}: {
-  userId: string;
-  isFollowing: boolean;
-  isLoading: boolean;
-  onClick: () => void;
-}) {
-  const session = useSession();
-
-  if (session.status !== "authenticated" || session.data.user.id === userId) {
-    return null;
-  }
-
-  return (
-    <Button disabled={isLoading} onClick={onClick} small gray={isFollowing}>
-      {isFollowing ? "Unfollow" : "Follow"}
-    </Button>
+      
+    </div>
   );
 }
 
-const pluralRules = new Intl.PluralRules();
-function getPlural(number: number, singular: string, plural: string) {
-  return pluralRules.select(number) === "one" ? singular : plural;
-}
-
-export const getStaticPaths: GetStaticPaths = () => {
-  return {
-    paths: [],
-    fallback: "blocking",
-  };
-};
-
-export async function getStaticProps(
-  context: GetStaticPropsContext<{ id: string }>
+export async function getServerSideProps(
+  context: GetStaticPropsContext<{ id: string }>,
 ) {
   const id = context.params?.id;
 
-  if (id == null) {
-    return {
-      redirect: {
-        destination: "/",
-      },
-    };
-  }
+  // Fetch data from external API
 
   const ssg = ssgHelper();
-  await ssg.profile.getById.prefetch({ id });
+
+  await ssg.profile.getById.fetch({ id });
 
   return {
     props: {
@@ -146,4 +102,4 @@ export async function getStaticProps(
   };
 }
 
-export default ProfilePage;
+export default Profile;
