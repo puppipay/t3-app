@@ -26,6 +26,7 @@ export const tweetRouter = createTRPCRouter({
       whereClause: { userId },
     });
   }),
+  
   infiniteFeed: publicProcedure.input(
     z.object({
         limit: z.number().optional(),
@@ -70,7 +71,7 @@ export const tweetRouter = createTRPCRouter({
               createdAt: tweet.createdAt,
               likeCount: tweet._count.likes,
               user: tweet.user,
-              //likedByMe: tweet.likes?.length > 0,
+              likedByMe: tweet.likes?.length > 0,
             };
           }, nextCursor),
         };
@@ -91,7 +92,7 @@ export const tweetRouter = createTRPCRouter({
       return tweet;
     }),
     
-    togglelike: protectedProcedure
+    toggleLike: protectedProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ input: { id }, ctx }) => {
       const data = {tweetId: id, userId: ctx.session.user.id};
