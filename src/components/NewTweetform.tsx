@@ -11,13 +11,16 @@ import { Button } from "./Button";
 import { ProfileImage } from "./ProfileImage";
 
 
+const NewTweetForm = () => {
 
-export default function NewTweetForm() : JSX.Element{
+
   const session = useSession();
   if (session.status !== "authenticated") return null;
 
   return <Form />;
 }
+
+export default NewTweetForm;
 
 function updateTextAreaSize(textArea?: HTMLTextAreaElement) {
   if (textArea == null) return;
