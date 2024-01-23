@@ -1,9 +1,9 @@
 import { type NextPage } from "next";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
-import { InfiniteTweetList } from "~/components/InfiniteTweetList";
+import { InfiniteTweetList } from "../components/InfiniteTweetList";
 //import { NewTweetForm } from "~/components/NewTweetForm";
-import { NewTweetForm } from "~/components/NewTweetForm";
+import { NewTweetForm } from "../components/NewTweetForm";
 import { api } from "~/utils/api";
 
 const TABS = ["Recent", "Following"] as const;
