@@ -10,18 +10,21 @@ import { api } from "~/utils/api";
 import { Button } from "./Button";
 import { ProfileImage } from "./ProfileImage";
 
+
+
+export  function NewTweetForm() {
+  const session = useSession();
+  if (session.status !== "authenticated") return null;
+
+  return <Form />;
+}
+
 function updateTextAreaSize(textArea?: HTMLTextAreaElement) {
   if (textArea == null) return;
   textArea.style.height = "0";
   textArea.style.height = `${textArea.scrollHeight}px`;
 }
 
-export function NewTweetForm() {
-  const session = useSession();
-  if (session.status !== "authenticated") return null;
-
-  return <Form />;
-}
 
 function Form() {
   const session = useSession();
