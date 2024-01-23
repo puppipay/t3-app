@@ -12,7 +12,7 @@ import { ProfileImage } from "./ProfileImage";
 
 
 
-export default function NewTweetForm() {
+export default function NewTweetForm() : JSX.Element{
   const session = useSession();
   if (session.status !== "authenticated") return null;
 
