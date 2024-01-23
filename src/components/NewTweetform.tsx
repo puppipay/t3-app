@@ -43,6 +43,7 @@ function Form() {
 
       if (session.status !== "authenticated") return;
 
+     
       trpcUtils.tweet.infiniteFeed.setInfiniteData({}, (oldData) => {
         if (oldData == null || oldData.pages[0] == null) return;
 
@@ -70,6 +71,7 @@ function Form() {
       });
     },
   });
+
 
   if (session.status !== "authenticated") return null;
 
