@@ -45,7 +45,7 @@ export function InfiniteTweetList({
       <InfiniteScroll
         dataLength={tweets.length}
         next={fetchNewTweets}
-        hasMore={hasMore}
+        hasMore={hasMore }
         loader={<LoadingSpinner />}
       >
         {tweets.map((tweet) => {
@@ -69,8 +69,11 @@ function TweetCard({
   likedByMe,
 }: Tweet) {
   const trpcUtils = api.useContext();
+
+  
   const toggleLike = api.tweet.toggleLike.useMutation({
     onSuccess: ({ addedLike }) => {
+
       const updateData: Parameters<
         typeof trpcUtils.tweet.infiniteFeed.setInfiniteData
       >[1] = (oldData) => {
@@ -101,14 +104,14 @@ function TweetCard({
 
       trpcUtils.tweet.infiniteFeed.setInfiniteData({}, updateData);
       trpcUtils.tweet.infiniteFeed.setInfiniteData(
-        // { onlyFollowing: true },
-        {},
+         { onlyFollowing: true },
+        
         updateData
       );
-      // trpcUtils.tweet.infiniteProfileFeed.setInfiniteData(
-      //   { userId: user.id },
-      //   updateData
-      // );
+       trpcUtils.tweet.infiniteProfileFeed.setInfiniteData(
+         { userId: user.id },
+         updateData
+       );
     },
   });
 
